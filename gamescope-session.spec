@@ -55,6 +55,7 @@ rm %{buildroot}%{_bindir}/steamos-update
 %doc README.md
 %{_bindir}/gamescope-session
 %{_bindir}/steam-http-loader
+%{_bindir}/steamos-session-select
 %{_datadir}/applications/gamescope-mimeapps.list
 %{_datadir}/applications/steam_http_loader.desktop
 %{_datadir}/gamescope-session/device-quirks
