@@ -3,7 +3,7 @@ Version:        {{{ git_dir_version }}}
 Release:        1%{?dist}
 Summary:        Steam Big Picture Mode/Gamemode session based on gamescope
 
-License:        WTFPL
+License:        MIT
 URL:            https://github.com/KyleGospo/gamescope-session
 
 VCS:            {{{ git_dir_vcs }}}
