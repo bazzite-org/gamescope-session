@@ -1,7 +1,7 @@
 version: "1"
 rules:
   - base: main
-    upstream: Samsagax:main
+    upstream: ChimeraOS:main
     mergeMethod: merge
     mergeUnstable: false
     assignees:
