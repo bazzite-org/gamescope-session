@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Fix intel color corruption
+# might come with some performance degradation but is better than a corrupted
+# color image
+export INTEL_DEBUG=norbc
+
+# User RADV Graphics Pipeline Library for stutter mitigation
+export RADV_PERFTEST=gpl
+
 # Some environment variables by default (taken from Deck session)
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
