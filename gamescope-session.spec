@@ -24,7 +24,7 @@ Steam Big Picture Mode/Gamemode session based on gamescope
 
 %prep
 {{{ git_dir_setup_macro }}}
-%patch0 -p1
+%patch 0 -p1
 
 %build
 
@@ -56,6 +56,8 @@ rm %{buildroot}%{_bindir}/steamos-update
 %{_bindir}/gamescope-session
 %{_bindir}/steam-http-loader
 %{_bindir}/steamos-session-select
+%{_bindir}/export-gpu
+%{_bindir}/steamos-select-branch
 %{_datadir}/applications/gamescope-mimeapps.list
 %{_datadir}/applications/steam_http_loader.desktop
 %{_datadir}/gamescope-session/device-quirks
