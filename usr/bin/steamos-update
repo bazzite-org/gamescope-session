@@ -1,12 +1,12 @@
 #! /bin/bash
 
-if command -v frzr-deploy > /dev/null; then
+if command -v rpm-ostree > /dev/null; then
 	if [ "$1" == "check" ]; then
-		frzr-deploy --check
+		rpm-ostree upgrade
 	elif [ "$1" == "--supports-duplicate-detection" ]; then
 		exit 0
 	else
-		frzr-deploy --steam-progress
+		rpm-ostree upgrade
 	fi
 else
     exit 7
