@@ -37,6 +37,7 @@ cp -rv usr/share/* %{buildroot}%{_datadir}
 cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 rm -rf %{buildroot}%{_bindir}/steamos-polkit-helpers
 rm %{buildroot}%{_bindir}/jupiter-biosupdate
+rm %{buildroot}%{_bindir}/steamos-session-select
 rm %{buildroot}%{_bindir}/steamos-update
 
 # Do post-installation
@@ -55,7 +56,6 @@ rm %{buildroot}%{_bindir}/steamos-update
 %doc README.md
 %{_bindir}/gamescope-session
 %{_bindir}/steam-http-loader
-%{_bindir}/steamos-session-select
 %{_bindir}/export-gpu
 %{_bindir}/steamos-select-branch
 %{_datadir}/applications/gamescope-mimeapps.list
