@@ -152,6 +152,7 @@ if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
     export GAMESCOPECMD="/usr/bin/gamescope \
       -e \
       --generate-drm-mode fixed \
+      --max-scale 2 \
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
