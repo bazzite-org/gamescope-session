@@ -303,7 +303,7 @@ fi
 
 if [ "$(cat /sys/devices/virtual/dmi/id/product_name)" == "Jupiter 1" ]; then
     (while true; do
-        /usr/lib/hwsupport/power-button-handler.py
+        /usr/bin/power-button-handler
     done) &
 fi
 
