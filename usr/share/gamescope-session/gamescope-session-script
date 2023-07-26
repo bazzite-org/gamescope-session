@@ -122,6 +122,10 @@ if [ -f "/usr/share/steamos/steamos.png" ] ; then
   export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/steamos/steamos.png
 fi
 
+# Bazzite: Enable brightness & fan controls
+export STEAM_ENABLE_DYNAMIC_BACKLIGHT = "1";
+export STEAM_ENABLE_FAN_CONTROL = "1";
+
 ulimit -n 524288
 
 # Source device quirks if exists
