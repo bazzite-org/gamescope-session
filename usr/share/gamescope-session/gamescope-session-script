@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Reset System76-Scheduler Foreground Process
+dbus-send --system --dest=com.system76.Scheduler \
+    /com/system76/Scheduler \
+    com.system76.Scheduler.SetForegroundProcess \
+    uint32:0
+
 # Fix intel color corruption
 # might come with some performance degradation but is better than a corrupted
 # color image
