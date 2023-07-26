@@ -301,6 +301,12 @@ if command -v /usr/bin/ibus-daemon > /dev/null; then
     /usr/bin/ibus-daemon -d -r --panel=disable --emoji-extension=disable
 fi
 
+if [ "$(cat /sys/devices/virtual/dmi/id/product_name)" == "Jupiter 1" ]; then
+    (while true; do
+        /usr/lib/hwsupport/power-button-handler.py
+    done) &
+fi
+
 # If we have mangoapp binary start it
 if command -v mangoapp > /dev/null; then
     mangoapp > "${HOME}"/.mangoapp-stdout.log 2>&1 &
