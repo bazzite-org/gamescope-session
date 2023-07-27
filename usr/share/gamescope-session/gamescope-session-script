@@ -303,10 +303,11 @@ if command -v /usr/bin/ibus-daemon > /dev/null; then
     /usr/bin/ibus-daemon -d -r --panel=disable --emoji-extension=disable
 fi
 
-if [ "$(cat /sys/devices/virtual/dmi/id/product_name)" == "Jupiter 1" ]; then
-    (while true; do
-        /usr/bin/power-button-handler
-    done) &
+if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
+    systemd-inhibit --what=handle-suspend-key:handle-power-key:handle-hibernate-key --who=gamescope-session --why="gamescope-session handles power button events" sleep infinity &
+    inhibitor_pid="$!"
+    /usr/lib/hwsupport/power-button-handler.py &
+    handler_pid="$!"
 fi
 
 # If we have mangoapp binary start it
@@ -359,7 +360,7 @@ for job in $(jobs -p); do
 	# Warn about unexpected things
 	if [[ $ret != 127 && $job = "$gamescope_pid" ]]; then
 		echo >&2 "gamescope-session: gamescope timed out while exiting, killing"
-	elif [[ $ret != 127 && $job != "$sleep_pid" ]]; then
+	elif [[ $ret != 127 && $job != "$sleep_pid" && $job != "$inhibitor_pid" && $job != "$handler_pid" ]]; then
 		echo >&2 "gamescope-session: unexpected background pid $job at teardown: "
 		# spew some debug about it
 		ps -p "$job" >&2
