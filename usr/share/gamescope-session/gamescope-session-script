@@ -50,6 +50,12 @@ export STEAM_GAMESCOPE_HAS_TEARING_SUPPORT=1
 # Enable tearing controls in steam
 export STEAM_GAMESCOPE_TEARING_SUPPORTED=1
 
+# Enable VRR controls in steam
+export STEAM_GAMESCOPE_VRR_SUPPORTED=1
+
+# When set to 1, a toggle will show up in the steamui to control whether dynamic refresh rate is applied to the steamui
+export STEAM_GAMESCOPE_DYNAMIC_REFRESH_IN_STEAM_SUPPORTED=0
+
 # There is no way to set a color space for an NV12
 # buffer in Wayland. And the color management protocol that is
 # meant to let this happen is missing the color range...
@@ -120,6 +126,10 @@ export STEAM_GAMESCOPE_FANCY_SCALING_SUPPORT=1
 export QT_IM_MODULE=steam
 export GTK_IM_MODULE=Steam
 
+# Make Qt apps use the styling and behaviour of the desktop session
+# This fixes some missing icons and unreadable text with Qt desktop apps in gamescope
+export QT_QPA_PLATFORM_THEME=kde
+
 # To play nice with the short term callback-based limiter for now
 export GAMESCOPE_LIMITER_FILE=$(mktemp /tmp/gamescope-limiter.XXXXXXXX)
 
@@ -128,7 +138,7 @@ if [ -f "/usr/share/steamos/steamos.png" ] ; then
   export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/steamos/steamos.png
 fi
 
-export XCURSOR_THEME = "steam";
+export XCURSOR_THEME=steam
 
 ulimit -n 524288
 
