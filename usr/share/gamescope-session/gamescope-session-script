@@ -313,7 +313,17 @@ if command -v /usr/bin/ibus-daemon > /dev/null; then
     /usr/bin/ibus-daemon -d -r --panel=disable --emoji-extension=disable
 fi
 
+# Steam notification daemon
+if command -v /usr/bin/steam_notif_daemon > /dev/null; then
+    /usr/bin/steam_notif_daemon &
+    notif_daemon_pid="$!"
+fi
+
 if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
+    # This will re-send automount notifications for steam, and has a builtin timeout to wait for steam to come up.
+    # _eventually_ steam should learn to talk to udisks so we don't have to rube goldberg this info to it.
+    /usr/bin/steamos-polkit-helpers/steamos-retrigger-automounts
+
     systemd-inhibit --what=handle-suspend-key:handle-power-key:handle-hibernate-key --who=gamescope-session --why="gamescope-session handles power button events" sleep infinity &
     inhibitor_pid="$!"
     /usr/lib/hwsupport/power-button-handler.py &
@@ -370,7 +380,7 @@ for job in $(jobs -p); do
 	# Warn about unexpected things
 	if [[ $ret != 127 && $job = "$gamescope_pid" ]]; then
 		echo >&2 "gamescope-session: gamescope timed out while exiting, killing"
-	elif [[ $ret != 127 && $job != "$sleep_pid" && $job != "$inhibitor_pid" && $job != "$handler_pid" ]]; then
+	elif [[ $ret != 127 && $job != "$sleep_pid" && $job != "$inhibitor_pid" && $job != "$handler_pid" && $job != "$notif_daemon_pid" ]]; then
 		echo >&2 "gamescope-session: unexpected background pid $job at teardown: "
 		# spew some debug about it
 		ps -p "$job" >&2
