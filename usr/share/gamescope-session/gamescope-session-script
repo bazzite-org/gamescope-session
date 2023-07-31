@@ -324,8 +324,10 @@ if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
     # _eventually_ steam should learn to talk to udisks so we don't have to rube goldberg this info to it.
     /usr/bin/steamos-polkit-helpers/steamos-retrigger-automounts
 
+    # Prevent default power button behavior
     systemd-inhibit --what=handle-suspend-key:handle-power-key:handle-hibernate-key --who=gamescope-session --why="gamescope-session handles power button events" sleep infinity &
     inhibitor_pid="$!"
+    # Start SteamOS's power button handler daemon, this passes power button events to Steam.
     /usr/lib/hwsupport/power-button-handler.py &
     handler_pid="$!"
 fi
