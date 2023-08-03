@@ -138,8 +138,6 @@ if [ -f "/usr/share/steamos/steamos.png" ] ; then
   export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/steamos/steamos.png
 fi
 
-export XCURSOR_THEME=steam
-
 ulimit -n 524288
 
 # Source device quirks if exists
@@ -185,11 +183,11 @@ fi
 
 # Use cursor if file exist
 if [ -z "$CURSOR_FILE" ] ; then
-    CURSOR_FILE="/usr/share/steamos/steamos-cursor.png"
+    CURSOR_FILE="${HOME}/.local/share/Steam/tenfoot/resource/images/cursors/arrow.png"
 fi
 CURSOR=""
 if [ -f "$CURSOR_FILE" ] ; then
-    CURSOR="--cursor ${CURSOR_FILE} --cursor-hotspot 5,3"
+    CURSOR="--cursor ${CURSOR_FILE}"
 fi
 
 # Define session if not overriden
