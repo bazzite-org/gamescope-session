@@ -197,6 +197,9 @@ fi
 if [ -z "$STEAMCMD" ] ; then
     STEAMCMD="steam -gamepadui -steamos3 -steampal -steamdeck"
 fi
+if [ -z "$OGUICMD" ] ; then
+    OGUICMD="opengamepadui --only-qam -- $STEAMCMD"
+fi
 
 if [ -z "$GAMESCOPECMD" ] ; then
     RESOLUTION=""
@@ -286,6 +289,9 @@ fi
 if [ -f "${HOME}"/.gamescope-cmd.log ]; then
     cp "${HOME}"/.gamescope-cmd.log "${HOME}"/.gamescope-cmd.log.old
 fi
+if [ -f "${HOME}"/.ogui-stdout.log ]; then
+    cp "${HOME}"/.ogui-stdout.log "${HOME}"/.ogui-stdout.log.old
+fi
 
 # Start gamescope compositor, log it's output and background it
 echo $GAMESCOPECMD > "${HOME}"/.gamescope-cmd.log
@@ -340,6 +346,9 @@ fi
 
 # Start Steam client
 $STEAMCMD > "${HOME}"/.steam-stdout.log 2>&1
+
+# Start OGUI in qam-only mode
+$OGUICMD > "${HOME}"/.ogui-stdout.log 2>&1
 
 if [[ "$SECONDS" -lt "$short_session_duration" ]]; then
 	echo "steam failed" >> "$short_session_tracker_file"
