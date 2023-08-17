@@ -32,6 +32,7 @@ Steam Big Picture Mode/Gamemode session based on gamescope
 mkdir -p %{buildroot}%{_bindir}/
 mkdir -p %{buildroot}%{_datadir}/
 mkdir -p %{buildroot}%{_userunitdir}/
+mkdir -p %{buildroot}%{_prefix}/etc/default/
 cp -rv usr/bin/* %{buildroot}%{_bindir}
 cp -rv usr/share/* %{buildroot}%{_datadir}
 cp -v usr/etc/default/* %{buildroot}%{_prefix}/etc/default
