@@ -34,6 +34,7 @@ mkdir -p %{buildroot}%{_datadir}/
 mkdir -p %{buildroot}%{_userunitdir}/
 cp -rv usr/bin/* %{buildroot}%{_bindir}
 cp -rv usr/share/* %{buildroot}%{_datadir}
+cp -v usr/etc/default/* %{buildroot}%{_prefix}/etc/default
 cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 rm -rf %{buildroot}%{_bindir}/steamos-polkit-helpers
 rm %{buildroot}%{_bindir}/jupiter-biosupdate
@@ -64,6 +65,7 @@ rm %{buildroot}%{_bindir}/steamos-update
 %{_datadir}/gamescope-session/gamescope-session-script
 %{_datadir}/polkit-1/actions/org.chimeraos.update.policy
 %{_datadir}/wayland-sessions/gamescope-session.desktop
+%{_prefix}/etc/default/ogui-qam
 %{_userunitdir}/gamescope-session.service
 
 # Finally, changes from the latest release of your application are generated from
