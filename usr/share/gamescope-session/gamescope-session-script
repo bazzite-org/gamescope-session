@@ -340,9 +340,15 @@ if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
     # Prevent default power button behavior
     systemd-inhibit --what=handle-suspend-key:handle-power-key:handle-hibernate-key --who=gamescope-session --why="gamescope-session handles power button events" sleep infinity &
     inhibitor_pid="$!"
+    
     # Start SteamOS's power button handler daemon, this passes power button events to Steam.
-    /usr/lib/hwsupport/power-button-handler.py &
+    if command -v /usr/bin/powerbuttond > /dev/null; then
+        /usr/bin/powerbuttond &
+    else
+        /usr/lib/hwsupport/power-button-handler.py &
+    fi
     handler_pid="$!"
+
 fi
 
 # If we have mangoapp binary start it
