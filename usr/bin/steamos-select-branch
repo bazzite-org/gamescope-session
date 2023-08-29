@@ -7,6 +7,6 @@ if [ -f $STEAMOS_BRANCH_SCRIPT ] ; then
 	${STEAMOS_BRANCH_SCRIPT} $@
 else
 	# Simply call shutdown on the client
-	echo "No branch script was found, branches won't be visible in the SteamUI"
+	echo "No branches available"
 fi
 
