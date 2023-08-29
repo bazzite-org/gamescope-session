@@ -142,6 +142,10 @@ if [ -f "/usr/share/steamos/steamos.png" ] ; then
   export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/steamos/steamos.png
 fi
 
+# SteamOS cursor theme
+export XCURSOR_THEME=steam
+CURSOR_FILE="/usr/share/steamos/steamos-cursor.png"
+
 ulimit -n 524288
 
 # Source device quirks if exists
