@@ -146,6 +146,9 @@ fi
 export XCURSOR_THEME=steam
 CURSOR_FILE="/usr/share/steamos/steamos-cursor.png"
 
+# Cursor hiding delay
+CURSOR_DELAY=${GAMESCOPE_OVERRIDE_CURSOR_DELAY:-3000}
+
 ulimit -n 524288
 
 # Source device quirks if exists
@@ -222,7 +225,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         --xwayland-count 2 \
         -O *,eDP-1 \
         --default-touch-mode 4 \
-        --hide-cursor-delay 3000 \
+        --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
         -R $socket -T $stats"
      else
@@ -233,7 +236,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         --xwayland-count 2 \
         -O *,eDP-1 \
         --default-touch-mode 4 \
-        --hide-cursor-delay 3000 \
+        --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
         --prefer-vk-device $VULKAN_ADAPTER \
         -R $socket -T $stats"

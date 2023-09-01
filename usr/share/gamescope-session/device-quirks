@@ -3,6 +3,7 @@
 
 SYS_ID="$(cat /sys/devices/virtual/dmi/id/product_name)"
 CPU_VENDOR="$(lscpu | grep "Vendor ID" | cut -d : -f 2 | xargs)"
+CURSOR_DELAY=${GAMESCOPE_OVERRIDE_CURSOR_DELAY:-3000}
 
 # OXP Devices
 OXP_LIST="ONE XPLAYER:ONEXPLAYER 1 T08:ONEXPLAYER 1S A08:ONEXPLAYER 1S T08:ONEXPLAYER mini A07:ONEXPLAYER mini GA72:ONEXPLAYER mini GT72:ONEXPLAYER Mini Pro:ONEXPLAYER GUNDAM GA72:ONEXPLAYER 2 ARP23"
@@ -17,7 +18,7 @@ if [[ ":$OXP_LIST:" =~ ":$SYS_ID:"  ]] || [[  ":$AOK_LIST:" =~ ":$SYS_ID:"   ]];
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-panel-type external \
       --force-external-orientation left "
@@ -29,7 +30,7 @@ if [[ ":$OXP_LIST:" =~ ":$SYS_ID:"  ]] || [[  ":$AOK_LIST:" =~ ":$SYS_ID:"   ]];
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-orientation left "
   fi
@@ -47,7 +48,7 @@ if [[ ":$AIR_LIST:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-panel-type external \
       --force-external-orientation left "
@@ -58,7 +59,7 @@ if [[ ":$AIR_LIST:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-orientation left "
   fi
@@ -75,7 +76,7 @@ if [[ ":$AYN_LIST:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-panel-type external \
       --force-external-orientation left "
@@ -95,7 +96,7 @@ if [[ ":$GDP_LIST:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,DSI-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-orientation right "
   fi
@@ -113,7 +114,7 @@ if [[ ":G1618-03:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,DSI-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-orientation normal "
   fi
@@ -128,7 +129,7 @@ if [[ ":G1618-04:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 "
    fi
    export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,60}
@@ -145,7 +146,7 @@ if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 "
   fi
   # Set refresh rate range and enable refresh rate switching
@@ -166,7 +167,7 @@ if [[ ":ROG Ally RC71L_RC71L:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
       --force-panel-type external \
       --adaptive-sync "
@@ -177,7 +178,7 @@ if [[ ":ROG Ally RC71L_RC71L:" =~ ":$SYS_ID:"  ]]; then
       --xwayland-count 2 \
       -O *,eDP-1 \
       --default-touch-mode 4 \
-      --hide-cursor-delay 3000 \
+      --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 "
   fi
   # Set refresh rate range and enable refresh rate switching
