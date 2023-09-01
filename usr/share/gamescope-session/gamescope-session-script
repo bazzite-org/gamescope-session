@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source /etc/default/ogui-qam
+source /etc/default/bazzite
 
 # Reset System76-Scheduler Foreground Process
 dbus-send --system --dest=com.system76.Scheduler \
@@ -132,7 +133,11 @@ export GTK_IM_MODULE=Steam
 
 # Make Qt apps use the styling and behaviour of the desktop session
 # This fixes some missing icons and unreadable text with Qt desktop apps in gamescope
-export QT_QPA_PLATFORM_THEME=kde
+if [[ ${BASE_IMAGE_NAME} == 'silverblue' ]]; then
+  export QT_QPA_PLATFORM_THEME=gnome
+else
+  export QT_QPA_PLATFORM_THEME=kde
+fi
 
 # To play nice with the short term callback-based limiter for now
 export GAMESCOPE_LIMITER_FILE=$(mktemp /tmp/gamescope-limiter.XXXXXXXX)
