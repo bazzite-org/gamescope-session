@@ -337,12 +337,6 @@ if command -v /usr/bin/ibus-daemon > /dev/null; then
     /usr/bin/ibus-daemon -d -r --panel=disable --emoji-extension=disable
 fi
 
-# Steam notification daemon
-if command -v /usr/bin/steam_notif_daemon > /dev/null; then
-    /usr/bin/steam_notif_daemon &
-    notif_daemon_pid="$!"
-fi
-
 if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
     # This will re-send automount notifications for steam, and has a builtin timeout to wait for steam to come up.
     # _eventually_ steam should learn to talk to udisks so we don't have to rube goldberg this info to it.
@@ -354,17 +348,20 @@ if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
     
     # Start SteamOS's power button handler daemon, this passes power button events to Steam.
     if command -v /usr/bin/powerbuttond > /dev/null; then
-        /usr/bin/powerbuttond &
+        /usr/bin/powerbuttond 2>&1 &
     else
-        /usr/lib/hwsupport/power-button-handler.py &
+        /usr/lib/hwsupport/power-button-handler.py 2>&1 &
     fi
-    handler_pid="$!"
-
 fi
 
 # If we have mangoapp binary start it
 if command -v mangoapp > /dev/null; then
     mangoapp > "${HOME}"/.mangoapp-stdout.log 2>&1 &
+fi
+
+# If we have steam_notif_daemon binary start it
+if command -v steam_notif_daemon > /dev/null; then
+    steam_notif_daemon > "${HOME}"/.steam_notif_daemon-stdout.log 2>&1 &
 fi
 
 if ${OGUI_QAM}; then
@@ -417,7 +414,7 @@ for job in $(jobs -p); do
 	# Warn about unexpected things
 	if [[ $ret != 127 && $job = "$gamescope_pid" ]]; then
 		echo >&2 "gamescope-session: gamescope timed out while exiting, killing"
-	elif [[ $ret != 127 && $job != "$sleep_pid" && $job != "$inhibitor_pid" && $job != "$handler_pid" && $job != "$notif_daemon_pid" ]]; then
+	elif [[ $ret != 127 && $job != "$sleep_pid" && $job != "$inhibitor_pid" ]]; then
 		echo >&2 "gamescope-session: unexpected background pid $job at teardown: "
 		# spew some debug about it
 		ps -p "$job" >&2
