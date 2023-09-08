@@ -8,7 +8,6 @@ URL:            https://github.com/KyleGospo/gamescope-session
 
 VCS:            {{{ git_dir_vcs }}}
 Source:        	{{{ git_dir_pack }}}
-Patch0:			fedora.patch
 BuildArch:      noarch
 
 Requires:       gamescope
@@ -24,7 +23,6 @@ Steam Big Picture Mode/Gamemode session based on gamescope
 
 %prep
 {{{ git_dir_setup_macro }}}
-%patch 0 -p1
 
 %build
 

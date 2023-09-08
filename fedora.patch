@@ -1,9 +1,0 @@
-diff -ur a/usr/bin/steam-http-loader b/usr/bin/steam-http-loader
---- a/usr/bin/steam-http-loader	2023-01-03 13:25:18.155825373 -0800
-+++ b/usr/bin/steam-http-loader	2023-01-03 13:29:58.125988565 -0800
-@@ -1,4 +1,4 @@
--#!/bin/env python
-+#!/bin/env python3
- import urllib.parse
- import os.path
- import argparse
