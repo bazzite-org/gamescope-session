@@ -1,7 +1,9 @@
 #!/bin/bash
 
 source /etc/default/ogui-qam
-source /etc/default/bazzite
+
+IMAGE_INFO="/usr/share/ublue-os/image-info.json"
+BASE_IMAGE_NAME=$(jq '."base-image-name"' $IMAGE_INFO)
 
 # Reset System76-Scheduler Foreground Process
 dbus-send --system --dest=com.system76.Scheduler \
