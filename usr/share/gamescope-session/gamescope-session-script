@@ -344,10 +344,6 @@ if command -v /usr/bin/ibus-daemon > /dev/null; then
 fi
 
 if [[ ":Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]]; then
-    # This will re-send automount notifications for steam, and has a builtin timeout to wait for steam to come up.
-    # _eventually_ steam should learn to talk to udisks so we don't have to rube goldberg this info to it.
-    /usr/bin/steamos-polkit-helpers/steamos-retrigger-automounts
-
     # Prevent default power button behavior
     systemd-inhibit --what=handle-suspend-key:handle-power-key:handle-hibernate-key --who=gamescope-session --why="gamescope-session handles power button events" sleep infinity &
     inhibitor_pid="$!"
