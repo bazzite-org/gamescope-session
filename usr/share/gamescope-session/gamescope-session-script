@@ -20,9 +20,6 @@ if grep -q "i915" <<< $(lsmod); then
     export MESA_GLTHREAD=true
 fi
 
-# Enable Gamescope WSI Layer
-export ENABLE_GAMESCOPE_WSI=1
-
 # Some environment variables by default (taken from Deck session)
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
