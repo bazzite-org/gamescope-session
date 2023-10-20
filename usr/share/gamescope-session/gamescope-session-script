@@ -11,6 +11,15 @@ dbus-send --system --dest=com.system76.Scheduler \
     com.system76.Scheduler.SetForegroundProcess \
     uint32:0
 
+# Reset power-profiles-daemon
+if command -v powerprofilesctl > /dev/null; then
+    if grep -qz "performance" <<< "$(powerprofilesctl list)"; then
+        powerprofilesctl set performance
+    elif grep -qz "balanced" <<< "$(powerprofilesctl list)"; then
+        powerprofilesctl set balanced
+    fi
+fi
+
 # Fix intel color corruption
 # might come with some performance degradation but is better than a corrupted
 # color image
