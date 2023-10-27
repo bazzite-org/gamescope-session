@@ -1,7 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Game Mode
-Comment=Steam session powered by gamescope
-Exec=gamescope-session
-Type=Application
-DesktopNames=gamescope
