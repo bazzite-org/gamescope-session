@@ -1,7 +1,7 @@
-Name:           gamescope-session
+Name:           gamescope-session-plus
 Version:        {{{ git_dir_version }}}
 Release:        1%{?dist}
-Summary:        Steam Big Picture Mode/Gamemode session based on gamescope
+Summary:        Gamescope session plus based on Valve's gamescope
 
 License:        MIT
 URL:            https://github.com/KyleGospo/gamescope-session
@@ -16,7 +16,7 @@ Requires:       python3
 BuildRequires:  systemd-rpm-macros
 
 %description
-Steam Big Picture Mode/Gamemode session based on gamescope
+Gamescope session plus based on Valve's gamescope
 
 # Disable debug packages
 %define debug_package %{nil}
@@ -30,15 +30,9 @@ Steam Big Picture Mode/Gamemode session based on gamescope
 mkdir -p %{buildroot}%{_bindir}/
 mkdir -p %{buildroot}%{_datadir}/
 mkdir -p %{buildroot}%{_userunitdir}/
-mkdir -p %{buildroot}%{_prefix}/etc/default/
 cp -rv usr/bin/* %{buildroot}%{_bindir}
 cp -rv usr/share/* %{buildroot}%{_datadir}
-cp -v usr/etc/default/* %{buildroot}%{_prefix}/etc/default
 cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
-rm -rf %{buildroot}%{_bindir}/steamos-polkit-helpers
-rm %{buildroot}%{_bindir}/jupiter-biosupdate
-rm %{buildroot}%{_bindir}/steamos-session-select
-rm %{buildroot}%{_bindir}/steamos-update
 
 # Do post-installation
 %post
@@ -54,18 +48,11 @@ rm %{buildroot}%{_bindir}/steamos-update
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/gamescope-session
-%{_bindir}/steam-http-loader
 %{_bindir}/export-gpu
-%{_bindir}/steamos-select-branch
-%{_datadir}/applications/gamescope-mimeapps.list
-%{_datadir}/applications/steam_http_loader.desktop
-%{_datadir}/gamescope-session/device-quirks
-%{_datadir}/gamescope-session/gamescope-session-script
-%{_datadir}/polkit-1/actions/org.chimeraos.update.policy
-%{_datadir}/wayland-sessions/gamescope-session.desktop
-%{_prefix}/etc/default/ogui-qam
-%{_userunitdir}/gamescope-session.service
+%{_bindir}/gamescope-session-plus
+%{_datadir}/gamescope-session-plus/device-quirks
+%{_datadir}/gamescope-session-plus/gamescope-session-plus
+%{_userunitdir}/gamescope-session-plus@.service
 
 # Finally, changes from the latest release of your application are generated from
 # your project's Git history. It will be empty until you make first annotated Git tag.
