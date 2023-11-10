@@ -64,7 +64,7 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
       --force-orientation left "
   fi
   # Set refresh rate range and enable refresh rate switching
-  export STEAM_DISPLAY_REFRESH_LIMITS=40,120
+  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,120}
 fi
 
 # AYANEO AIR Devices
@@ -229,6 +229,6 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
       --force-orientation left "
   fi
   # Set refresh rate range and enable refresh rate switching
-  export STEAM_DISPLAY_REFRESH_LIMITS=60,144
+  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-60,144}
 fi
 
