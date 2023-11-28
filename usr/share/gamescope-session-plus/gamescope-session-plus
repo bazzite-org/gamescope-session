@@ -14,8 +14,14 @@ dbus-send --system --dest=com.system76.Scheduler \
     com.system76.Scheduler.SetForegroundProcess \
     uint32:0
 
-# Reset power-profiles-daemon
-if command -v powerprofilesctl > /dev/null; then
+# Reset power-profiles-daemon/TuneD
+if command -v tuned-adm > /dev/null; then
+    if grep -qz "throughput-performance" <<< "$(tuned-adm list)"; then
+        tuned-adm profile throughput-performance
+    elif grep -qz "balanced" <<< "$(tuned-adm list)"; then
+        tuned-adm profile balanced
+    fi
+elif command -v powerprofilesctl > /dev/null; then
     if grep -qz "performance" <<< "$(powerprofilesctl list)"; then
         powerprofilesctl set performance
     elif grep -qz "balanced" <<< "$(powerprofilesctl list)"; then
