@@ -176,6 +176,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         --default-touch-mode 4 \
         --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
+        --cursor-scale-height 720 \
         -R $socket -T $stats"
      else
         GAMESCOPECMD="/usr/bin/gamescope \
@@ -187,6 +188,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         --default-touch-mode 4 \
         --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
+        --cursor-scale-height 720 \
         --prefer-vk-device $VULKAN_ADAPTER \
         -R $socket -T $stats"
      fi
