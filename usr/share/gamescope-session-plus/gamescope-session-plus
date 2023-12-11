@@ -169,6 +169,8 @@ if [ -z "$GAMESCOPECMD" ] ; then
     if [ -z $VULKAN_ADAPTER ]; then
         GAMESCOPECMD="/usr/bin/gamescope \
         $CURSOR \
+        --max-scale 2 \
+        --adaptive-sync \
         -e \
         $RESOLUTION \
         --xwayland-count 2 \
@@ -181,6 +183,8 @@ if [ -z "$GAMESCOPECMD" ] ; then
      else
         GAMESCOPECMD="/usr/bin/gamescope \
         $CURSOR \
+        --max-scale 2 \
+        --adaptive-sync \
         -e \
         $RESOLUTION \
         --xwayland-count 2 \

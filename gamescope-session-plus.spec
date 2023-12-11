@@ -11,7 +11,9 @@ Source:        	{{{ git_dir_pack }}}
 BuildArch:      noarch
 
 Requires:       gamescope
+Requires:       edid-decode
 Requires:       python3
+Requires:       pulseaudio-utils
 
 BuildRequires:  systemd-rpm-macros
 
