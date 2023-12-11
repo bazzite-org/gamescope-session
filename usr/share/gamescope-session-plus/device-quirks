@@ -179,9 +179,11 @@ if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
     --generate-drm-mode fixed \
     --max-scale 2 \
     --xwayland-count 2 \
+    -w 1280 -h 800 \
     -O *,eDP-1 \
     --default-touch-mode 4 \
     --hide-cursor-delay $CURSOR_DELAY \
+    --max-scale 2 \
     --fade-out-duration 200 \
     --cursor-scale-height 720 "
 
@@ -211,10 +213,12 @@ if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
     -e \
     --generate-drm-mode fixed \
     --xwayland-count 2 \
-    "${mura_args[@]}" \
+    -w 1280 -h 800 \
     -O *,eDP-1 \
+    "${mura_args[@]}" \
     --default-touch-mode 4 \
     --hide-cursor-delay $CURSOR_DELAY \
+    --max-scale 2 \
     --fade-out-duration 200 \
     --cursor-scale-height 720 "
 
