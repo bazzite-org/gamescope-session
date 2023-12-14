@@ -20,6 +20,7 @@ if [[ ":$OXP_LIST:" =~ ":$SYS_ID:"  ]] || [[  ":$AOK_LIST:" =~ ":$SYS_ID:"   ]];
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-panel-type external \
       --force-external-orientation left "
   # Fallback method. Dependent on a special --force-orientation option in gamescope
@@ -32,6 +33,7 @@ if [[ ":$OXP_LIST:" =~ ":$SYS_ID:"  ]] || [[  ":$AOK_LIST:" =~ ":$SYS_ID:"   ]];
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-orientation left "
   fi
   # Set refresh rate range and enable refresh rate switching
@@ -50,6 +52,7 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-panel-type external \
       --force-external-orientation left "
   # Fallback method. Dependent on a special --force-orientation option in gamescope
@@ -61,6 +64,7 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-orientation left "
   fi
   # Set refresh rate range and enable refresh rate switching
@@ -79,6 +83,7 @@ if [[ ":$AIR_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-panel-type external \
       --force-external-orientation left "
   # Fallback method. Dependent on a special --force-orientation option in gamescope
@@ -90,6 +95,7 @@ if [[ ":$AIR_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-orientation left "
   fi
 fi
@@ -107,6 +113,7 @@ if [[ ":$AYN_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-panel-type external \
       --force-external-orientation left "
   fi
@@ -127,6 +134,7 @@ if [[ ":$GDP_LIST:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-orientation right "
   fi
 fi
@@ -145,6 +153,7 @@ if [[ ":G1618-03:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-orientation normal "
   fi
 fi
@@ -157,7 +166,8 @@ if [[ ":G1618-04:" =~ ":$SYS_ID:"  ]]; then
     -O *,eDP-1 \
     --default-touch-mode 4 \
     --hide-cursor-delay $CURSOR_DELAY \
-    --fade-out-duration 200 "
+    --fade-out-duration 200 \
+    --cursor-scale-height 720 "
 
    export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,60}
 fi
@@ -173,7 +183,8 @@ if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
     --default-touch-mode 4 \
     --hide-cursor-delay $CURSOR_DELAY \
     --max-scale 2 \
-    --fade-out-duration 200 "
+    --fade-out-duration 200 \
+    --cursor-scale-height 720 "
 
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,60}
@@ -206,7 +217,8 @@ if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
     --default-touch-mode 4 \
     --hide-cursor-delay $CURSOR_DELAY \
     --max-scale 2 \
-    --fade-out-duration 200 "
+    --fade-out-duration 200 \
+    --cursor-scale-height 720 "
 
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-45,90}
@@ -236,6 +248,7 @@ if [[ ":ROG Ally RC71L_RC71L:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --force-panel-type external \
       --adaptive-sync "
   # fallback for users of gamescope-git.
@@ -246,7 +259,8 @@ if [[ ":ROG Ally RC71L_RC71L:" =~ ":$SYS_ID:"  ]]; then
       -O *,eDP-1 \
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
-      --fade-out-duration 200 "
+      --fade-out-duration 200 \
+      --cursor-scale-height 720 "
   fi
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,120}
@@ -263,6 +277,7 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
       --default-touch-mode 4 \
       --hide-cursor-delay $CURSOR_DELAY \
       --fade-out-duration 200 \
+      --cursor-scale-height 720 \
       --adaptive-sync \
       --force-orientation left "
   fi
