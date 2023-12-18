@@ -272,7 +272,9 @@ if [[ ":Galileo:Jupiter:" =~ "$(cat /sys/devices/virtual/dmi/id/product_name)" ]
 
     # Start SteamOS's power button handler daemon, this passes power button events to Steam.
     if command -v /usr/bin/powerbuttond > /dev/null; then
-        /usr/bin/powerbuttond 2>&1 &
+	(while true; do
+        	/usr/bin/powerbuttond
+	done) &
     else
         /usr/lib/hwsupport/power-button-handler.py 2>&1 &
     fi
