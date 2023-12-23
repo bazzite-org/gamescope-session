@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 # Search for all VGA-compatible devices
 echo "Searching for VGA-compatible devices..."

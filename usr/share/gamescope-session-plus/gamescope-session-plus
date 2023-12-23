@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 declare -r CLIENT=$1
 declare -r CLIENT_CONFIG_DIR_USR=/usr/share/gamescope-session-plus/sessions.d

@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 # This file would be sourced by gamescope-session script (meant for
 # ChimeraOS devices).
 
