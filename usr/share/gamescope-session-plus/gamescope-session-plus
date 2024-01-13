@@ -110,6 +110,10 @@ export GAMESCOPE_DISABLE_ASYNC_FLIPS=1
 
 ulimit -n 524288
 
+# Default Steam Gamemode UI Background.
+# Applied here instead of gamescope-session-steam due to device-quirks overriding it.
+export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/bazzite.png
+
 # Source device quirks if exists
 if [ -f /usr/share/gamescope-session-plus/device-quirks ]; then
   . /usr/share/gamescope-session-plus/device-quirks
