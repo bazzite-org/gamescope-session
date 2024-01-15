@@ -282,5 +282,7 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
       --adaptive-sync \
       --force-orientation left "
   fi
+  # Set refresh rate range and enable refresh rate switching
+  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-60,144}
 fi
 
