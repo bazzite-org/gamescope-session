@@ -14,17 +14,13 @@ dbus-send --system --dest=com.system76.Scheduler \
     com.system76.Scheduler.SetForegroundProcess \
     uint32:0
 
-# Reset power-profiles-daemon/TuneD
+# Reset power-profiles-daemon/TuneD to balanced if the current profile is power save, this allows desktop control without greatly harming gaming performance.
 if command -v tuned-adm > /dev/null; then
-    if grep -qz "throughput-performance" <<< "$(tuned-adm list)"; then
-        tuned-adm profile throughput-performance
-    elif grep -qz "balanced" <<< "$(tuned-adm list)"; then
+    if grep -qz "powersave" <<< "$(tuned-adm active)"; then
         tuned-adm profile balanced
     fi
 elif command -v powerprofilesctl > /dev/null; then
-    if grep -qz "performance" <<< "$(powerprofilesctl list)"; then
-        powerprofilesctl set performance
-    elif grep -qz "balanced" <<< "$(powerprofilesctl list)"; then
+    if grep -qz "power-saver" <<< "$(powerprofilesctl get)"; then
         powerprofilesctl set balanced
     fi
 fi
