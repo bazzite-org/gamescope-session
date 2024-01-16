@@ -39,10 +39,7 @@ post_gamescope_start () {
 # might come with some performance degradation but is better than a corrupted
 # color image
 export INTEL_DEBUG=norbc
-if grep -q "i915" <<< $(lsmod); then
-    # Force GLTHREAD on Intel hardware due to a bug that can cause crashes without it
-    export MESA_GLTHREAD=true
-fi
+export MESA_GLTHREAD=true
 
 # Some environment variables by default (taken from Deck session)
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
