@@ -195,8 +195,10 @@ if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_ENABLE_FAN_CONTROL=1
   # Sets CPU topology for Steam Deck hardware
   export WINE_CPU_TOPOLOGY=8:0,1,2,3,4,5,6,7
-  # Enables default resolution behavior
-  export GAMESCOPE_ENABLE_720P_RESTRICT=1
+  # Enables default resolution behavior if not already set by user
+  if [ -z $GAMESCOPE_ENABLE_720P_RESTRICT ]; then
+    export GAMESCOPE_ENABLE_720P_RESTRICT=1
+  fi
 
   if [ -f "/usr/share/plymouth/themes/steamos/steamos-jupiter.png" ]; then
     export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/steamos-jupiter.png
@@ -231,8 +233,10 @@ if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_ENABLE_FAN_CONTROL=1
   # Sets CPU topology for Steam Deck hardware
   export WINE_CPU_TOPOLOGY=8:0,1,2,3,4,5,6,7
-  # Enables default resolution behavior
-  export GAMESCOPE_ENABLE_720P_RESTRICT=1
+  # Enables default resolution behavior if not already set by user
+  if [ -z $GAMESCOPE_ENABLE_720P_RESTRICT ]; then
+    export GAMESCOPE_ENABLE_720P_RESTRICT=1
+  fi
 
   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
