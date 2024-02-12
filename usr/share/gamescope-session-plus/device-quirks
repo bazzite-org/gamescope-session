@@ -292,6 +292,9 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
       --force-orientation left "
   fi
   # Set refresh rate range and enable refresh rate switching
-  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-60,144}
+  # With the latest gamescope patch, the unified framerate slider works correctly
+  # By enabling the option below, if unified refresh rate is disabled, the refresh
+  # rate slider can appear, which leads users into footgunning themselves.
+  # export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-60,144}
 fi
 
