@@ -12,6 +12,7 @@ BuildArch:      noarch
 
 Requires:       gamescope
 Requires:       python3
+Requires:       switcheroo-control
 
 BuildRequires:  systemd-rpm-macros
 
