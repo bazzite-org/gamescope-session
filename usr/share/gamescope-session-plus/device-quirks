@@ -151,7 +151,12 @@ if [[ ":G1618-04:" =~ ":$SYS_ID:"  ]]; then
     --fade-out-duration 200 \
     --cursor-scale-height 720 "
 
-   export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,60}
+  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-40,60}
+fi
+
+#GPD Win Mini supports up to 60-120hz refresh rate changing
+if [[ ":G1617-01:" =~ ":$SYS_ID:" ]]; then
+  export STEAM_DISPLAY_REFRESH_LIMITS=${GAMESCOPE_OVERRIDE_REFRESH_RATE:-60,120}
 fi
 
 # Steam Deck
