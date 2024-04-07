@@ -162,6 +162,9 @@ if [ -f "$CURSOR_FILE" ] ; then
     CURSOR="--cursor ${CURSOR_FILE}"
 fi
 
+# Use specified output connector(s) if set, otherwise use default value
+: "${OUTPUT_CONNECTOR:=*,eDP-1}"
+
 if [ -z "$GAMESCOPECMD" ] ; then
     RESOLUTION=""
     if [ -n "$SCREEN_WIDTH" ] && [ -n "$SCREEN_HEIGHT" ] ; then
@@ -176,7 +179,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         -e \
         $RESOLUTION \
         --xwayland-count 2 \
-        -O *,eDP-1 \
+        -O $OUTPUT_CONNECTOR \
         --default-touch-mode 4 \
         --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
@@ -190,7 +193,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
         -e \
         $RESOLUTION \
         --xwayland-count 2 \
-        -O *,eDP-1 \
+        -O $OUTPUT_CONNECTOR \
         --default-touch-mode 4 \
         --hide-cursor-delay $CURSOR_DELAY \
         --fade-out-duration 200 \
