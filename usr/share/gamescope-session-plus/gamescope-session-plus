@@ -105,6 +105,10 @@ export GAMESCOPE_LIMITER_FILE=$(mktemp /tmp/gamescope-limiter.XXXXXXXX)
 # Temporary crutch until dummy plane interactions / etc are figured out
 export GAMESCOPE_DISABLE_ASYNC_FLIPS=1
 
+if /usr/libexec/hwsupport/hhd-supported-hardware; then
+    export GAMESCOPE_DISABLE_TOUCH_CLICK_MODE=1
+fi
+
 ulimit -n 524288
 
 # Default Steam Gamemode UI Background.
