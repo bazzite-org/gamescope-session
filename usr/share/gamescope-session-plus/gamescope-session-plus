@@ -184,7 +184,6 @@ if [ -z "$GAMESCOPECMD" ] ; then
         $CURSOR \
         --max-scale 2 \
         --adaptive-sync \
-        --hdr-enabled \
         -e \
         $RESOLUTION \
         --xwayland-count 2 \
@@ -199,7 +198,6 @@ if [ -z "$GAMESCOPECMD" ] ; then
         $CURSOR \
         --max-scale 2 \
         --adaptive-sync \
-        --hdr-enabled \
         -e \
         $RESOLUTION \
         --xwayland-count 2 \
