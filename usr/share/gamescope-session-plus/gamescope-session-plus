@@ -253,7 +253,7 @@ echo $GAMESCOPECMD > "${HOME}"/.gamescope-cmd.log
 $GAMESCOPECMD > "${HOME}"/.gamescope-stdout.log 2>&1 &
 gamescope_pid="$!"
 
-if read -r -t 3 response_x_display response_wl_display <> "$socket"; then
+if read -r -t 15 response_x_display response_wl_display <> "$socket"; then
 	export DISPLAY="$response_x_display"
 	export GAMESCOPE_WAYLAND_DISPLAY="$response_wl_display"
 	# We're done!
