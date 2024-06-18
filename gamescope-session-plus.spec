@@ -13,6 +13,7 @@ BuildArch:      noarch
 Requires:       gamescope
 Requires:       python3
 Requires:       switcheroo-control
+Requires:       gawk
 
 BuildRequires:  systemd-rpm-macros
 
@@ -29,9 +30,11 @@ Gamescope session plus based on Valve's gamescope
 
 %install
 mkdir -p %{buildroot}%{_bindir}/
+mkdir -p %{buildroot}%{_libexecdir}/
 mkdir -p %{buildroot}%{_datadir}/
 mkdir -p %{buildroot}%{_userunitdir}/
 cp -rv usr/bin/* %{buildroot}%{_bindir}
+cp -rv usr/libexec/* %{buildroot}%{_libexecdir}
 cp -rv usr/share/* %{buildroot}%{_datadir}
 cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 
@@ -51,6 +54,7 @@ cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 %doc README.md
 %{_bindir}/export-gpu
 %{_bindir}/gamescope-session-plus
+%{_libexecdir}/gamescope-sdl-workaround
 %{_datadir}/gamescope-session-plus/device-quirks
 %{_datadir}/gamescope-session-plus/gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus@.service

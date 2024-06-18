@@ -170,6 +170,12 @@ if [ -f "$CURSOR_FILE" ] ; then
     CURSOR="--cursor ${CURSOR_FILE}"
 fi
 
+BACKEND=""
+# Check if an older GPU that needs the SDL workaround is in use.
+if /usr/libexec/gamescope-sdl-workaround; then
+    BACKEND="--backend sdl"
+fi
+
 # Use specified output connector(s) if set, otherwise use default value
 : "${OUTPUT_CONNECTOR:=*,eDP-1}"
 
@@ -182,6 +188,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
     if [ -z $VULKAN_ADAPTER ]; then
         GAMESCOPECMD="/usr/bin/gamescope \
         $CURSOR \
+        $BACKEND \
         --max-scale 2 \
         --adaptive-sync \
         -e \
@@ -196,6 +203,7 @@ if [ -z "$GAMESCOPECMD" ] ; then
      else
         GAMESCOPECMD="/usr/bin/gamescope \
         $CURSOR \
+        $BACKEND \
         --max-scale 2 \
         --adaptive-sync \
         -e \
