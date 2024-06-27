@@ -290,6 +290,11 @@ if command -v mangoapp >/dev/null; then
 	done) &
 fi
 
+# If the Sunshine service is enabled, restart it
+if systemctl is-enabled --user sunshine.service; then
+    systemctl restart --user sunshine.service 2>&1 &
+fi
+
 # For compatibility with older user configuration overrides
 if [ -n "$STEAMCMD" ]; then
 	CLIENTCMD=$STEAMCMD
