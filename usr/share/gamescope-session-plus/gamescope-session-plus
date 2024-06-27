@@ -188,6 +188,11 @@ if [ -z "$GAMESCOPECMD" ]; then
         BACKEND="--backend sdl"
     fi
 
+    DISABLE_TOUCH_CLICK=""
+    if /usr/libexec/hwsupport/hhd-supported-hardware; then
+        DISABLE_TOUCH_CLICK="--disable-touch-click"
+    fi
+
 	GAMESCOPECMD="/usr/bin/gamescope \
 		$CURSOR \
 		$RESOLUTION \
@@ -197,6 +202,7 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$BYPASS_STEAM_RESOLUTION \
 		$PANEL_TYPE_OPTION \
         $BACKEND \
+        $DISABLE_TOUCH_CLICK \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
