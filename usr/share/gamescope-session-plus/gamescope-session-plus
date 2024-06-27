@@ -7,17 +7,17 @@ declare -r CLIENT_CONFIG_DIR_LOCAL="${XDG_CONFIG_HOME:-$HOME/.config}/gamescope-
 
 # Reset power-profiles-daemon/TuneD to balanced if the current profile is power save, this allows desktop control without greatly harming gaming performance.
 if command -v tuned-adm > /dev/null; then
-    if grep -qz "powersave" <<< "$(tuned-adm active)"; then
-        if grep -q "acpi-cpufreq" <<< "$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver)" && grep -q "balanced-no-pstate" <<< "$(tuned-adm profile)"; then
-            tuned-adm profile balanced-no-pstate
-        else
-            tuned-adm profile balanced
-        fi
-    fi
+	if grep -qz "powersave" <<< "$(tuned-adm active)"; then
+		if grep -q "acpi-cpufreq" <<< "$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver)" && grep -q "balanced-no-pstate" <<< "$(tuned-adm profile)"; then
+			tuned-adm profile balanced-no-pstate
+		else
+			tuned-adm profile balanced
+		fi
+	fi
 elif command -v powerprofilesctl > /dev/null; then
-    if grep -qz "power-saver" <<< "$(powerprofilesctl get)"; then
-        powerprofilesctl set balanced
-    fi
+	if grep -qz "power-saver" <<< "$(powerprofilesctl get)"; then
+		powerprofilesctl set balanced
+	fi
 fi
 
 # default empty session recovery function
@@ -201,22 +201,22 @@ if [ -z "$GAMESCOPECMD" ]; then
 	if [ -n "$CUSTOM_REFRESH_RATES" ] && gamescope_has_option "--custom-refresh-rates"; then
 		CUSTOM_REFRESH_RATES_OPTION="--custom-refresh-rates $CUSTOM_REFRESH_RATES"
 	fi
-
-    BACKEND=""
-    # Check if an older GPU that needs the SDL workaround is in use.
-    if /usr/libexec/gamescope-sdl-workaround && gamescope_has_option "--backend"; then
-        BACKEND="--backend sdl"
-    fi
-
-    DISABLE_TOUCH_CLICK=""
-    if [ -x /usr/libexec/hwsupport/hhd-supported-hardware ] && /usr/libexec/hwsupport/hhd-supported-hardware && gamescope_has_option "--disable-touch-click"; then
-        DISABLE_TOUCH_CLICK="--disable-touch-click"
-    fi
-
-    MURA_OPTION=""
-    if [ -n "$MURA" ]; then
-    	MURA_OPTION="--mura-map $MURA"
-    fi
+	
+	BACKEND=""
+	# Check if an older GPU that needs the SDL workaround is in use.
+	if /usr/libexec/gamescope-sdl-workaround && gamescope_has_option "--backend"; then
+		BACKEND="--backend sdl"
+	fi
+	
+	DISABLE_TOUCH_CLICK=""
+	if [ -x /usr/libexec/hwsupport/hhd-supported-hardware ] && /usr/libexec/hwsupport/hhd-supported-hardware && gamescope_has_option "--disable-touch-click"; then
+		DISABLE_TOUCH_CLICK="--disable-touch-click"
+	fi
+	
+	MURA_OPTION=""
+	if [ -n "$MURA" ]; then
+		MURA_OPTION="--mura-map $MURA"
+	fi
 
 	GAMESCOPECMD="/usr/bin/gamescope \
 		$CURSOR \
@@ -227,9 +227,9 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$BYPASS_STEAM_RESOLUTION \
 		$PANEL_TYPE_OPTION \
 		$CUSTOM_REFRESH_RATES_OPTION \
-        $BACKEND \
-        $DISABLE_TOUCH_CLICK \
-        $MURA_OPTION \
+		$BACKEND \
+		$DISABLE_TOUCH_CLICK \
+		$MURA_OPTION \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
