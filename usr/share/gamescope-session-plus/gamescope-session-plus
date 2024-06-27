@@ -8,11 +8,7 @@ declare -r CLIENT_CONFIG_DIR_LOCAL="${XDG_CONFIG_HOME:-$HOME/.config}/gamescope-
 # Reset power-profiles-daemon/TuneD to balanced if the current profile is power save, this allows desktop control without greatly harming gaming performance.
 if command -v tuned-adm > /dev/null; then
 	if grep -qz "powersave" <<< "$(tuned-adm active)"; then
-		if grep -q "acpi-cpufreq" <<< "$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver)" && grep -q "balanced-no-pstate" <<< "$(tuned-adm profile)"; then
-			tuned-adm profile balanced-no-pstate
-		else
-			tuned-adm profile balanced
-		fi
+		tuned-adm profile balanced
 	fi
 elif command -v powerprofilesctl > /dev/null; then
 	if grep -qz "power-saver" <<< "$(powerprofilesctl get)"; then
