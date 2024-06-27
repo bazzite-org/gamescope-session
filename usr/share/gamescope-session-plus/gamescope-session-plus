@@ -193,7 +193,7 @@ if [ -z "$GAMESCOPECMD" ]; then
 	fi
 
 	BYPASS_STEAM_RESOLUTION=""
-	if gamescope_has_option "--bypass-steam-resolution"; then
+	if [ ! -n "$DONT_BYPASS_RESOLUTION" ] && gamescope_has_option "--bypass-steam-resolution"; then
 		BYPASS_STEAM_RESOLUTION="--bypass-steam-resolution"
 	fi
 
@@ -204,8 +204,13 @@ if [ -z "$GAMESCOPECMD" ]; then
     fi
 
     DISABLE_TOUCH_CLICK=""
-    if /usr/libexec/hwsupport/hhd-supported-hardware; then
+    if /usr/libexec/hwsupport/hhd-supported-hardware && gamescope_has_option "--disable-touch-click"; then
         DISABLE_TOUCH_CLICK="--disable-touch-click"
+    fi
+
+    MURA_OPTION=""
+    if [ -n "$MURA" ]; then
+    	MURA_OPTION="--mura-map $MURA"
     fi
 
 	GAMESCOPECMD="/usr/bin/gamescope \
@@ -218,6 +223,7 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$PANEL_TYPE_OPTION \
         $BACKEND \
         $DISABLE_TOUCH_CLICK \
+        $MURA_OPTION \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
