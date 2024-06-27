@@ -84,13 +84,46 @@ fi
 # Steam Deck
 if [[ ":Jupiter:" =~ ":$SYS_ID:"  ]]; then
   DRM_MODE=fixed
+  DONT_BYPASS_RESOLUTION=1
   export STEAM_DISPLAY_REFRESH_LIMITS=40,60
+
+  # Enables the adaptive brightness toggle
+  export STEAM_ENABLE_DYNAMIC_BACKLIGHT=1
+  # Allows the fan controller service to be toggled from gamemode
+  export STEAM_ENABLE_FAN_CONTROL=1
+  # Sets CPU topology for Steam Deck hardware
+  export WINE_CPU_TOPOLOGY=8:0,1,2,3,4,5,6,7
+
+  if [ -f "/usr/share/plymouth/themes/steamos/steamos-jupiter.png" ]; then
+    export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/steamos-jupiter.png
+  fi
 fi
 
 # OLED Steam Deck
 if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
+  MURA_PATH=$(galileo-mura-setup)
+  if [ $? -eq 0 ]; then
+    MURA="$MURA_PATH"
+  fi
+
   DRM_MODE=fixed
+  DONT_BYPASS_RESOLUTION=1
   export STEAM_DISPLAY_REFRESH_LIMITS=45,90
+
+  # Enables the adaptive brightness toggle
+  export STEAM_ENABLE_DYNAMIC_BACKLIGHT=1
+  # Allows the fan controller service to be toggled from gamemode
+  export STEAM_ENABLE_FAN_CONTROL=1
+  # Sets CPU topology for Steam Deck hardware
+  export WINE_CPU_TOPOLOGY=8:0,1,2,3,4,5,6,7
+
+  export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
+  export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+  export STEAM_ENABLE_STATUS_LED_BRIGHTNESS=1
+
+  if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
+    export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/steamos-galileo.png
+  fi
 fi
 
 # ROG Ally
