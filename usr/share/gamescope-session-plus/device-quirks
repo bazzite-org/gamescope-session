@@ -44,7 +44,6 @@ fi
 AYN_LIST="Loki Max:Loki Zero:Loki MiniPro"
 if [[ ":$AYN_LIST:" =~ ":$SYS_ID:"  ]]; then
   DRM_MODE=fixed
-  PANEL_TYPE=external
   ORIENTATION=left
   CUSTOM_REFRESH_RATES=40,50,60
 
