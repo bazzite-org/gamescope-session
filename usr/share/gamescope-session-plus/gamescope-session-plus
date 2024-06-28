@@ -214,6 +214,11 @@ if [ -z "$GAMESCOPECMD" ]; then
 		MURA_OPTION="--mura-map $MURA"
 	fi
 
+	FORCE_COMPOSITION_OPTION=""
+	if [ -n "$FORCE_COMPOSITION" ]; then
+		FORCE_COMPOSITION_OPTION="--force-composition"
+	fi
+
 	GAMESCOPECMD="/usr/bin/gamescope \
 		$CURSOR \
 		$RESOLUTION \
@@ -226,6 +231,7 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$BACKEND \
 		$DISABLE_TOUCH_CLICK \
 		$MURA_OPTION \
+		$FORCE_COMPOSITION_OPTION \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
