@@ -82,7 +82,6 @@ fi
 
 # GPD Win mini
 if [[ ":G1617-01:" =~ ":$SYS_ID:"  ]]; then
-  ORIENTATION=""
   if ( xrandr --prop 2>$1 | grep -e "1080x1920 " > /dev/null ) ; then
      ORIENTATION=right
   fi
