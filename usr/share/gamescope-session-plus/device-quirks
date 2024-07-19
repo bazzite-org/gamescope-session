@@ -124,6 +124,11 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
   ADAPTIVE_SYNC=1
   CUSTOM_REFRESH_RATES=60,144
 
+  # Adaptive brightness script values
+  ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL=400
+  ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR=1.0
+  ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT=-3
+
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=60,144
 fi
