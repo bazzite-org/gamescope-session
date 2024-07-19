@@ -85,6 +85,15 @@ if [[ ":G1617-01:" =~ ":$SYS_ID:"  ]]; then
   if ( xrandr --prop 2>$1 | grep -e "1080x1920 " > /dev/null ) ; then
      ORIENTATION=right
   fi
+
+  # 2024 Model w/ VRR
+  if ( xrandr --prop 2>$1 | grep -e "1920x1080 " > /dev/null ) ; then
+    PANEL_TYPE=external
+    ADAPTIVE_SYNC=1
+
+    # Set refresh rate range and enable refresh rate switching
+    export STEAM_DISPLAY_REFRESH_LIMITS=60,120
+  fi
 fi
 
 # Steam Deck
