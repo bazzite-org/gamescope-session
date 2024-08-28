@@ -1,6 +1,11 @@
 #!/bin/bash
 
-SYS_ID="$(cat /sys/devices/virtual/dmi/id/product_name)"
+if [ -x /usr/libexec/hwsupport/sysid ]; then
+  # If present, use script to clean up hardware with insignificant product name changes, such as the ROG Ally.
+  SYS_ID="$(/usr/libexec/hwsupport/sysid)"
+else
+  SYS_ID="$(cat /sys/devices/virtual/dmi/id/product_name)"
+fi
 
 declare -r CLIENT=$1
 declare -r CLIENT_CONFIG_DIR_USR=/usr/share/gamescope-session-plus/sessions.d
@@ -32,7 +37,6 @@ get_gamescope_binary() {
 		echo "/usr/bin/gamescope"
 	fi
 }
-
 gamescope_has_option() {
 	if ($(get_gamescope_binary) --help 2>&1 | grep -e "$1" > /dev/null); then
 		return 0
@@ -225,6 +229,11 @@ if [ -z "$GAMESCOPECMD" ]; then
 		BACKEND_OPTION="--backend $BACKEND"
 	fi
 
+	DISABLE_TOUCH_CLICK_OPTION=""
+	if [ -n "$DISABLE_TOUCH_CLICK" ] && gamescope_has_option "--disable-touch-click"; then
+		DISABLE_TOUCH_CLICK_OPTION="--disable-touch-click"
+	fi
+
 	GAMESCOPECMD="$(get_gamescope_binary) \
 		$CURSOR \
 		$RESOLUTION \
@@ -236,6 +245,7 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$PANEL_TYPE_OPTION \
 		$CUSTOM_REFRESH_RATES_OPTION \
 		$BACKEND_OPTION \
+		$DISABLE_TOUCH_CLICK_OPTION \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
@@ -286,7 +296,7 @@ echo $GAMESCOPECMD >"${HOME}"/.gamescope-cmd.log
 $GAMESCOPECMD >"${HOME}"/.gamescope-stdout.log 2>&1 &
 gamescope_pid="$!"
 
-if read -r -t 3 response_x_display response_wl_display <>"$socket"; then
+if read -r -t 15 response_x_display response_wl_display <> "$socket"; then
 	export DISPLAY="$response_x_display"
 	export GAMESCOPE_WAYLAND_DISPLAY="$response_wl_display"
 	# We're done!
@@ -321,13 +331,65 @@ if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
   fi
 fi
 
+# Start discover-overlay if enabled and discord is installed
+if [ -f /etc/default/discover-overlay ]; then
+	source /etc/default/discover-overlay
+	if [[ ${AUTO_LAUNCH_DISCOVER_OVERLAY} == 1 ]]; then
+		if command -v discover-overlay > /dev/null && grep -q "com.discordapp.Discord" <<< $(/usr/bin/flatpak list --app --columns=application); then
+			env DISPLAY=:0 discover-overlay 2>&1 &
+		fi
+	fi
+fi
+
+# If the Sunshine service is enabled, restart it
+if systemctl is-enabled --user sunshine.service; then
+    systemctl restart --user sunshine.service 2>&1 &
+fi
+
+# Use adaptive brightness if available and desired by the end user.
+# https://github.com/corando98/LLG_Dev_scripts
+if [[ -f /usr/libexec/adaptive_brightness.py && -n "$ADAPTIVE_BRIGHTNESS_ENABLED" ]]; then
+	ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL_OPTION=""
+	if [ -n "$ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL" ]; then
+		ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL_OPTION="--min_brightness_level $ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL"
+	fi
+
+	ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR_OPTION=""
+	if [ -n "$ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR" ]; then
+		ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR_OPTION="--sensitivity_factor $ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR"
+	fi
+
+	ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT_OPTION=""
+	if [ -n "$ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT" ]; then
+		ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT_OPTION="--sensor_shift $ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT"
+	fi
+
+	ADAPTIVE_BRIGHTNESS_STEP_OPTION=""
+	if [ -n "$ADAPTIVE_BRIGHTNESS_STEP" ]; then
+		ADAPTIVE_BRIGHTNESS_STEP_OPTION="--step $ADAPTIVE_BRIGHTNESS_STEP"
+	fi
+
+	ADAPTIVE_BRIGHTNESS_BACKLIGHT_DEVICE_OPTION=""
+	if [ -n "$ADAPTIVE_BRIGHTNESS_BACKLIGHT_DEVICE" ]; then
+		ADAPTIVE_BRIGHTNESS_BACKLIGHT_DEVICE_OPTION="--backlight_device $ADAPTIVE_BRIGHTNESS_BACKLIGHT_DEVICE"
+	fi
+
+	/usr/bin/python3 /usr/libexec/adaptive_brightness.py start \
+		$ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL_OPTION \
+		$ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR_OPTION \
+		$ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT_OPTION \
+		$ADAPTIVE_BRIGHTNESS_STEP_OPTION \
+		$ADAPTIVE_BRIGHTNESS_BACKLIGHT_DEVICE_OPTION \
+		--silent 2>&1 &
+fi
+
 # For compatibility with older user configuration overrides
 if [ -n "$STEAMCMD" ]; then
 	CLIENTCMD=$STEAMCMD
 fi
 
-# Start client application
-$CLIENTCMD >"${HOME}/.${CLIENT}-stdout.log" 2>&1
+# Start client application with switcheroo to ensure it's on the correct GPU
+switcherooctl launch $CLIENTCMD >"${HOME}/.${CLIENT}-stdout.log" 2>&1
 
 if [[ "$SECONDS" -lt "$short_session_duration" ]]; then
 	echo "${CLIENT} failed" >>"$short_session_tracker_file"

@@ -1,7 +1,12 @@
 # This file will be sourced by gamescope-session script if not
 # overridden in ~/.config/environment.d
 
-SYS_ID="$(cat /sys/devices/virtual/dmi/id/product_name)"
+if [ -x /usr/libexec/hwsupport/sysid ]; then
+  # If present, use script to clean up hardware with insignificant product name changes, such as the ROG Ally.
+  SYS_ID="$(/usr/libexec/hwsupport/sysid)"
+else
+  SYS_ID="$(cat /sys/devices/virtual/dmi/id/product_name)"
+fi
 CPU_VENDOR="$(lscpu | grep "Vendor ID" | cut -d : -f 2 | xargs)"
 
 # OXP 60Hz Devices
@@ -29,6 +34,28 @@ fi
 # Antec CORE HS
 if [[ ":SLIDE: =~ ":$SYS_ID:" ]]; then
   ORIENTATION=left
+fi
+
+# OXP X1 Devices
+OXP_X1_LIST="ONEXPLAYER X1 A"
+if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
+  PANEL_TYPE=external
+  ORIENTATION=left
+  CUSTOM_REFRESH_RATES=60,120
+
+  # Set refresh rate range and enable refresh rate switching
+  export STEAM_DISPLAY_REFRESH_LIMITS=60,120
+fi
+
+# OXP X1 144Hz Devices
+OXP_X1_144_LIST="ONEXPLAYER X1 mini"
+if [[ ":$OXP_X1_144_LIST:" =~ ":$SYS_ID:"  ]]; then
+  PANEL_TYPE=external
+  ORIENTATION=left
+  CUSTOM_REFRESH_RATES=60,144
+
+  # Set refresh rate range and enable refresh rate switching
+  export STEAM_DISPLAY_REFRESH_LIMITS=60,144
 fi
 
 # AYANEO AIR, SLIDE, and FLIP Keyboard Devices
@@ -87,9 +114,17 @@ fi
 
 # GPD Win mini
 if [[ ":G1617-01:" =~ ":$SYS_ID:"  ]]; then
-  ORIENTATION=""
   if ( xrandr --prop 2>$1 | grep -e "1080x1920 " > /dev/null ) ; then
      ORIENTATION=right
+  fi
+
+  # 2024 Model w/ VRR
+  if ( xrandr --prop 2>$1 | grep -e "1920x1080 " > /dev/null ) ; then
+    PANEL_TYPE=external
+    ADAPTIVE_SYNC=1
+
+    # Set refresh rate range and enable refresh rate switching
+    export STEAM_DISPLAY_REFRESH_LIMITS=60,120
   fi
 fi
 
@@ -122,6 +157,9 @@ if [[ ":Jupiter:Galileo:" =~ ":$SYS_ID:" ]]; then
       /usr/bin/python3 /usr/lib/hwsupport/power-button-handler.py
     done) &
   fi
+else
+  # On hardware that isn't a Steam Deck, fix Steam touch interaction.
+  DISABLE_TOUCH_CLICK=1
 fi
 
 # Steam Deck (LCD)
@@ -147,8 +185,7 @@ if [[ ":Galileo:" =~ ":$SYS_ID:" ]]; then
 fi
 
 # ROG Ally & ROG Ally X
-ALLY_LIST="ROG Ally RC71L_RC71L:ROG Ally RC71L:ROG Ally X RC72LA"
-if [[ ":$ALLY_LIST:" =~ ":$SYS_ID:"  ]]; then
+if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:" =~ ":$SYS_ID:" ]]; then
   PANEL_TYPE=external
   ADAPTIVE_SYNC=1
 
@@ -160,6 +197,11 @@ fi
 if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
   ORIENTATION=left
   CUSTOM_REFRESH_RATES=60,144
+
+  # Adaptive brightness script values
+  ADAPTIVE_BRIGHTNESS_MIN_BRIGHTNESS_LEVEL=400
+  ADAPTIVE_BRIGHTNESS_SENSITIVITY_FACTOR=1.0
+  ADAPTIVE_BRIGHTNESS_SENSOR_SHIFT=-3
 
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=60,144

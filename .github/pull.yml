@@ -1,0 +1,12 @@
+version: "1"
+rules:
+  - base: main
+    upstream: ChimeraOS:main
+    mergeMethod: merge
+    mergeUnstable: false
+    assignees:
+      - KyleGospo
+    reviewers:
+      - KyleGospo
+    conflictReviewers:
+      - KyleGospo
