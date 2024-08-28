@@ -31,6 +31,11 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=40,120
 fi
 
+# Antec CORE HS
+if [[ ":SLIDE: =~ ":$SYS_ID:" ]]; then
+  ORIENTATION=left
+fi
+
 # OXP X1 Devices
 OXP_X1_LIST="ONEXPLAYER X1 A"
 if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
