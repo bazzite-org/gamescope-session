@@ -152,9 +152,6 @@ if [[ ":Jupiter:Galileo:" =~ ":$SYS_ID:" ]]; then
       /usr/bin/python3 /usr/lib/hwsupport/power-button-handler.py
     done) &
   fi
-else
-  # On hardware that isn't a Steam Deck, fix Steam touch interaction.
-  DISABLE_TOUCH_CLICK=1
 fi
 
 # Steam Deck (LCD)
