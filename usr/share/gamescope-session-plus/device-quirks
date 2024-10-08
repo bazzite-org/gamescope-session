@@ -180,9 +180,6 @@ fi
 if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:" =~ ":$SYS_ID:" ]]; then
   PANEL_TYPE=external
   ADAPTIVE_SYNC=1
-
-  # Set refresh rate range and enable refresh rate switching
-  export STEAM_DISPLAY_REFRESH_LIMITS=40,120
 fi
 
 # Lenovo Legion Go
