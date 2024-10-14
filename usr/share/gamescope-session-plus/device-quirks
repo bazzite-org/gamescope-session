@@ -14,6 +14,7 @@ OXP_LIST="ONE XPLAYER:ONEXPLAYER 1 T08:ONEXPLAYER 1S A08:ONEXPLAYER 1S T08:ONEXP
 AOK_LIST="AOKZOE A1 AR07:AOKZOE A1 Pro"
 if [[ ":$OXP_LIST:" =~ ":$SYS_ID:"  ]] || [[  ":$AOK_LIST:" =~ ":$SYS_ID:"   ]]; then
   DRM_MODE=fixed
+  # TODO: Start seeing why the option below is needed
   PANEL_TYPE=external
   ORIENTATION=left
 
@@ -24,7 +25,6 @@ fi
 # OXP 120Hz Devices
 OXP_120_LIST="ONEXPLAYER F1:ONEXPLAYER F1L:ONEXPLAYER F1 EVA-01"
 if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
-  PANEL_TYPE=external
   ORIENTATION=left
 
   # Set refresh rate range and enable refresh rate switching
@@ -34,7 +34,6 @@ fi
 # OXP X1 Devices
 OXP_X1_LIST="ONEXPLAYER X1 A"
 if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
-  PANEL_TYPE=external
   ORIENTATION=left
   CUSTOM_REFRESH_RATES=60,120
 
@@ -45,7 +44,6 @@ fi
 # OXP X1 144Hz Devices
 OXP_X1_144_LIST="ONEXPLAYER X1 mini"
 if [[ ":$OXP_X1_144_LIST:" =~ ":$SYS_ID:"  ]]; then
-  PANEL_TYPE=external
   ORIENTATION=left
   CUSTOM_REFRESH_RATES=60,144
 
@@ -178,8 +176,9 @@ fi
 
 # ROG Ally & ROG Ally X
 if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:" =~ ":$SYS_ID:" ]]; then
-  PANEL_TYPE=external
   ADAPTIVE_SYNC=1
+  ENABLE_VRR_MODESET=1
+  ENABLE_HACKY_TEXTURE=1
 
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=40,120

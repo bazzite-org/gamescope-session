@@ -239,6 +239,16 @@ if [ -z "$GAMESCOPECMD" ]; then
 		HEADLESS_OPTION="--headless"
 	fi
 
+	VRR_MODESET_OPTION=""
+	if [ -n "$ENABLE_VRR_MODESET" ] && gamescope_has_option "--enable-vrr-modesetting"; then
+		VRR_MODESET_OPTION="--enable-vrr-modesetting"
+	fi
+
+	HACKY_OPTION=""
+	if [ -n "$ENABLE_HACKY_TEXTURE" ] && gamescope_has_option "--enable-hacky-texture"; then
+		HACKY_OPTION="--enable-hacky-texture"
+	fi
+
 	GAMESCOPECMD="$(get_gamescope_binary) \
 		$CURSOR \
 		$RESOLUTION \
@@ -252,6 +262,8 @@ if [ -z "$GAMESCOPECMD" ]; then
 		$BACKEND_OPTION \
 		$DISABLE_TOUCH_CLICK_OPTION \
 		$HEADLESS_OPTION \
+		$VRR_MODESET_OPTION \
+		$HACKY_OPTION \
 		--prefer-output $OUTPUT_CONNECTOR \
 		--xwayland-count $XWAYLAND_COUNT \
 		--default-touch-mode $TOUCH_MODE \
