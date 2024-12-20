@@ -184,6 +184,17 @@ if [[ ":Galileo:" =~ ":$SYS_ID:" ]]; then
   fi
 fi
 
+# OneXPlayer F1 Pro
+if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
+  export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
+  export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+
+  # Maybe we should use galileo for oxp too
+  if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
+    export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/steamos-galileo.png
+  fi
+fi
+
 # ROG Ally & ROG Ally X
 if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:" =~ ":$SYS_ID:" ]]; then
   ADAPTIVE_SYNC=1
