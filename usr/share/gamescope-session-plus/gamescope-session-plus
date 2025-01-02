@@ -129,10 +129,8 @@ if [ -f /usr/share/gamescope-session-plus/device-quirks ]; then
 	. /usr/share/gamescope-session-plus/device-quirks
 fi
 
-# Hi I'm John Nvidia, welcome to JACKASS!
-IMAGE_INFO="/usr/share/ublue-os/image-info.json"
-IMAGE_NAME=$(jq -r '."image-name"' < $IMAGE_INFO)
-if [[ $IMAGE_NAME =~ "nvidia" ]]; then
+# Handle Nvidia GPUs
+if lsmod | grep -q '^nvidia'; then
 	# https://github.com/ValveSoftware/gamescope/pull/1671
 	export GAMESCOPE_WSI_HIDE_PRESENT_WAIT_EXT=1
 	export ENABLE_GAMESCOPE_HDR=1
