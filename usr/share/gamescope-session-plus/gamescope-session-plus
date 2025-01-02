@@ -135,6 +135,7 @@ IMAGE_NAME=$(jq -r '."image-name"' < $IMAGE_INFO)
 if [[ $IMAGE_NAME =~ "nvidia" ]]; then
 	# https://github.com/ValveSoftware/gamescope/pull/1671
 	export GAMESCOPE_WSI_HIDE_PRESENT_WAIT_EXT=1
+	export ENABLE_GAMESCOPE_HDR=1
 fi
 
 # Source client app specific configuration files
