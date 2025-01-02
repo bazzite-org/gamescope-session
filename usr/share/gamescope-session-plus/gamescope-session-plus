@@ -129,6 +129,14 @@ if [ -f /usr/share/gamescope-session-plus/device-quirks ]; then
 	. /usr/share/gamescope-session-plus/device-quirks
 fi
 
+# Hi I'm John Nvidia, welcome to JACKASS!
+IMAGE_INFO="/usr/share/ublue-os/image-info.json"
+IMAGE_NAME=$(jq -r '."image-name"' < $IMAGE_INFO)
+if [[ $IMAGE_NAME =~ "nvidia" ]]; then
+	# https://github.com/ValveSoftware/gamescope/pull/1671
+	export GAMESCOPE_WSI_HIDE_PRESENT_WAIT_EXT=1
+fi
+
 # Source client app specific configuration files
 set -a
 for i in ${CLIENT_CONFIG_DIR_USR}/${CLIENT} ${CLIENT_CONFIG_DIR_ETC}/${CLIENT} ${CLIENT_CONFIG_DIR_LOCAL}/${CLIENT}; do
