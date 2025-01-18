@@ -201,8 +201,8 @@ if [[ ":ZOTAC GAMING ZONE:" =~ ":$SYS_ID:" ]]; then
   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
 fi
 
-# ROG Ally & ROG Ally X
-if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:" =~ ":$SYS_ID:" ]]; then
+# ROG Ally & ROG Ally X & Legion Go S
+if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:83L3:" =~ ":$SYS_ID:" ]]; then
   ADAPTIVE_SYNC=1
   ENABLE_VRR_MODESET=1
   ENABLE_HACKY_TEXTURE=1
