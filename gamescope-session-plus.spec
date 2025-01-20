@@ -30,11 +30,9 @@ Gamescope session plus based on Valve's gamescope
 
 %install
 mkdir -p %{buildroot}%{_bindir}/
-mkdir -p %{buildroot}%{_libexecdir}/
 mkdir -p %{buildroot}%{_datadir}/
 mkdir -p %{buildroot}%{_userunitdir}/
 cp -rv usr/bin/* %{buildroot}%{_bindir}
-cp -rv usr/libexec/* %{buildroot}%{_libexecdir}
 cp -rv usr/share/* %{buildroot}%{_datadir}
 cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 
