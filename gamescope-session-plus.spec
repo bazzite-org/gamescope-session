@@ -52,7 +52,6 @@ cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 %doc README.md
 %{_bindir}/export-gpu
 %{_bindir}/gamescope-session-plus
-%{_libexecdir}/gamescope-sdl-workaround
 %{_datadir}/gamescope-session-plus/device-quirks
 %{_datadir}/gamescope-session-plus/gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus@.service
