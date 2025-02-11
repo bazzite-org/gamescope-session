@@ -88,8 +88,16 @@ if [[ ":$AYN_LIST:" =~ ":$SYS_ID:"  ]]; then
 fi
 
 # GDP Win devices
-GDP_LIST="G1619-01:G1621-02:MicroPC:WIN2"
+GDP_LIST="G1619-01:G1621-02:MicroPC"
 if [[ ":$GDP_LIST:" =~ ":$SYS_ID:"  ]]; then
+  OUTPUT_CONNECTOR='*,DSI-1'
+  DRM_MODE=fixed
+  ORIENTATION=right
+fi
+
+# GPD Win 2 specific quirk
+if [[ ":WIN2:" =~ ":$SYS_ID:" ]]; then
+  USE_ROTATION_SHADER=1
   OUTPUT_CONNECTOR='*,DSI-1'
   DRM_MODE=fixed
   ORIENTATION=right
