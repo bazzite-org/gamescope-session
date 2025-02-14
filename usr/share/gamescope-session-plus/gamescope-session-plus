@@ -335,7 +335,8 @@ if command -v /usr/bin/ibus-daemon >/dev/null; then
 	/usr/bin/ibus-daemon -d -r --panel=disable --emoji-extension=disable
 fi
 
-# If we have mangoapp binary start it
+# If we have mangoapp binary start it after a short delay
+sleep 3
 if command -v mangoapp >/dev/null; then
 	(while true; do
 		mangoapp
