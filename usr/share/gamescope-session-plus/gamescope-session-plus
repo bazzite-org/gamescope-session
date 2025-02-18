@@ -246,8 +246,10 @@ if [ -z "$GAMESCOPECMD" ]; then
 	fi
 
 	HACKY_OPTION=""
-	if [ -n "$ENABLE_HACKY_TEXTURE" ] && gamescope_has_option "--enable-hacky-texture"; then
-		HACKY_OPTION="--enable-hacky-texture"
+	if gamescope_has_option "--enable-hacky-texture"; then
+		if [ ! -n "$DISABLE_HACKY_TEXTURE" ]; then
+			HACKY_OPTION="--enable-hacky-texture"
+		fi
 	fi
 
   HDR_OPTIONS=""

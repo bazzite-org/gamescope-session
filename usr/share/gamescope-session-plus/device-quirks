@@ -197,6 +197,8 @@ if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
 
+  DISABLE_HACKY_TEXTURE=1
+
   # Maybe we should use galileo for oxp too
   if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
     export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/plymouth/themes/steamos/steamos-galileo.png
@@ -213,7 +215,6 @@ fi
 if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:83L3:83N6:83Q2:83Q3:" =~ ":$SYS_ID:" ]]; then
   ADAPTIVE_SYNC=1
   ENABLE_VRR_MODESET=1
-  ENABLE_HACKY_TEXTURE=1
 
   # Set refresh rate range and enable refresh rate switching
   export STEAM_DISPLAY_REFRESH_LIMITS=40,120
