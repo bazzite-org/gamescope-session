@@ -232,6 +232,12 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=60,144
 fi
 
+# ASUS ROG Flow Z13 2025
+if [[ ":ROG Flow Z13 GZ302EA_GZ302EA_03156148D:" =~ ":$SYS_ID:" ]]; then
+  ADAPTIVE_SYNC=1
+  ENABLE_VRR_MODESET=1
+fi
+
 # Minisforum V3
 if [[ ":V3:" =~ ":$SYS_ID:"  ]]; then
   PANEL_TYPE=external
