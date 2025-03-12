@@ -194,8 +194,9 @@ fi
 
 # OneXPlayer F1 Pro
 if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
-  # export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
-  # export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+  PANEL_TYPE=external
+  #export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
+  #export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
 
   # Maybe we should use galileo for oxp too
   if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
@@ -204,10 +205,11 @@ if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
 fi
 
 # # Zotac Zone
-# if [[ ":ZOTAC GAMING ZONE:" =~ ":$SYS_ID:" ]]; then
-#   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
-#   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
-# fi
+if [[ ":ZOTAC GAMING ZONE:" =~ ":$SYS_ID:" ]]; then
+  PANEL_TYPE=external
+  #export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
+  #export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+fi
 
 # ROG Ally & ROG Ally X & Legion Go S
 if [[ ":ROG Ally RC71L:ROG Ally X RC72LA:83L3:83N6:83Q2:83Q3:" =~ ":$SYS_ID:" ]]; then
