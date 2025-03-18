@@ -29,6 +29,15 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=40,120
 fi
 
+# OXP 144Hz Devices
+OXP_144_LIST="ONEXPLAYER F1 OLED:ONEXPLAYER F1 EVA-02"
+if [[ ":$OXP_144_LIST:" =~ ":$SYS_ID:"  ]]; then
+  ORIENTATION=left
+
+  # Set refresh rate range and enable refresh rate switching
+  export STEAM_DISPLAY_REFRESH_LIMITS=40,144
+fi
+
 # OXP X1 Devices
 OXP_X1_LIST="ONEXPLAYER X1 i"
 if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
