@@ -29,15 +29,6 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=40,120
 fi
 
-# OXP 144Hz Devices
-OXP_144_LIST="ONEXPLAYER F1 OLED:ONEXPLAYER F1 EVA-02"
-if [[ ":$OXP_144_LIST:" =~ ":$SYS_ID:"  ]]; then
-  ORIENTATION=left
-
-  # Set refresh rate range and enable refresh rate switching
-  export STEAM_DISPLAY_REFRESH_LIMITS=30,144
-fi
-
 # OXP X1 Devices
 OXP_X1_LIST="ONEXPLAYER X1 i"
 if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
@@ -197,9 +188,10 @@ if [[ ":Galileo:" =~ ":$SYS_ID:" ]]; then
 fi
 
 # OneXPlayer F1 Pro
-if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
+if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 OLED:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+  CUSTOM_REFRESH_RATES=120,144
 
   # Maybe we should use galileo for oxp too
   if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
