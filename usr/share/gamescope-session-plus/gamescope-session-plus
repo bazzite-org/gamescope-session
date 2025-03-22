@@ -340,7 +340,7 @@ fi
 # If we have mangoapp binary start it
 if command -v mangoapp >/dev/null; then
 	(while true; do
-		mangoapp
+		mangoapp; sleep 10
 	done) &
 fi
 
