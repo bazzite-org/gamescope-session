@@ -55,6 +55,7 @@ cp -v usr/lib/systemd/user/* %{buildroot}%{_userunitdir}
 %{_datadir}/gamescope-session-plus/device-quirks
 %{_datadir}/gamescope-session-plus/gamescope-session-plus
 %{_userunitdir}/gamescope-session-plus@.service
+%{_userunitdir}/gamescope-session.target
 
 # Finally, changes from the latest release of your application are generated from
 # your project's Git history. It will be empty until you make first annotated Git tag.
