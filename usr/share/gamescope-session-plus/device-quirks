@@ -212,9 +212,10 @@ if [[ ":Galileo:" =~ ":$SYS_ID:" ]]; then
 fi
 
 # OneXPlayer F1 Pro
-if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
+if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 OLED:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:" ]]; then
   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
   export STEAM_GAMESCOPE_FORCE_OUTPUT_TO_HDR10PQ_DEFAULT=1
+  CUSTOM_REFRESH_RATES=120,144
 
   # Maybe we should use galileo for oxp too
   if [ -f "/usr/share/plymouth/themes/steamos/steamos-galileo.png" ]; then
