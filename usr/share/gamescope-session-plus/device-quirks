@@ -223,6 +223,11 @@ if [[ ":ONEXPLAYER F1Pro:ONEXPLAYER F1 OLED:ONEXPLAYER F1 EVA-02:" =~ ":$SYS_ID:
   fi
 fi
 
+# Always use Bazzite branding if it is available
+if [ -f "/usr/share/ublue-os/bazzite/updatelogo.png" ]; then
+  export STEAM_UPDATEUI_PNG_BACKGROUND=/usr/share/ublue-os/bazzite/updatelogo.png
+fi
+
 # Zotac Zone
 # if [[ ":ZOTAC GAMING ZONE:" =~ ":$SYS_ID:" ]]; then
 #   export STEAM_GAMESCOPE_FORCE_HDR_DEFAULT=1
