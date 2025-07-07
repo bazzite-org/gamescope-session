@@ -357,14 +357,9 @@ if [[ ":Galileo:" =~ ":$SYS_ID:"  ]]; then
   fi
 fi
 
-# Start discover-overlay if enabled and discord is installed
-if [ -f /etc/default/discover-overlay ]; then
-	source /etc/default/discover-overlay
-	if [[ ${AUTO_LAUNCH_DISCOVER_OVERLAY} == 1 ]]; then
-		if command -v discover-overlay > /dev/null && grep -q "com.discordapp.Discord" <<< $(/usr/bin/flatpak list --app --columns=application); then
-			env DISPLAY=:0 discover-overlay 2>&1 &
-		fi
-	fi
+# Start discover-overlay if installed
+if flatpak list --columns=application | grep -q '^io\.github\.trigg\.discover_overlay$'; then
+  env DISPLAY=:0 flatpak run io.github.trigg.discover_overlay 2>&1 &
 fi
 
 # If the Sunshine service is enabled, restart it
