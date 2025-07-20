@@ -30,7 +30,7 @@ if [[ ":$OXP_120_LIST:" =~ ":$SYS_ID:"  ]]; then
 fi
 
 # OXP X1 Devices
-OXP_X1_LIST="ONEXPLAYER X1 i"
+OXP_X1_LIST="ONEXPLAYER X1 i:ONEXPLAYER X1Pro EVA-02"
 if [[ ":$OXP_X1_LIST:" =~ ":$SYS_ID:"  ]]; then
   PANEL_TYPE=internal
   USE_ROTATION_SHADER=1
