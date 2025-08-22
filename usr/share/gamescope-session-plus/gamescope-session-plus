@@ -113,11 +113,6 @@ export GAMESCOPE_LIMITER_FILE=$(mktemp /tmp/gamescope-limiter.XXXXXXXX)
 
 ulimit -n 524288
 
-# Apply our branding for Steam
-if [[ -f /usr/bin/bazzite-steam-brand ]]; then
-	/usr/bin/bazzite-steam-brand
-fi
-
 # Source device quirks if exists
 if [ -f /usr/share/gamescope-session-plus/device-quirks ]; then
 	. /usr/share/gamescope-session-plus/device-quirks
