@@ -116,7 +116,7 @@ if [[ ":$GDP_LIST:" =~ ":$SYS_ID:"  ]]; then
 fi
 
 # GPD Win 2 specific quirk
-if [[ ":WIN2:" =~ ":$SYS_ID:" ]]; then
+if [[ ":WIN2:G1619-03:" =~ ":$SYS_ID:" ]]; then
   USE_ROTATION_SHADER=1
   OUTPUT_CONNECTOR='*,DSI-1'
   DRM_MODE=fixed
