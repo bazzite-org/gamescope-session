@@ -259,6 +259,10 @@ if [ -z "$GAMESCOPECMD" ]; then
     export DXVK_HDR=1
   fi
 
+  if [ -n "$HDR_ENABLE_PQ" ] && [ "$HDR_ENABLE_PQ" == "1" ] && gamescope_has_option "--hdr-pq-internal-enable"; then
+	HDR_OPTIONS="$HDR_OPTIONS --hdr-pq-internal-enable"
+  fi
+
   if [ -n "$GAMESCOPE_HDR_NITS" ] && gamescope_has_option "--hdr-itm-sdr-nits" && gamescope_has_option "--hdr-sdr-content-nits"; then
     HDR_OPTIONS="$HDR_OPTIONS --hdr-itm-sdr-nits $GAMESCOPE_HDR_NITS --hdr-sdr-content-nits $GAMESCOPE_HDR_NITS"
   fi
