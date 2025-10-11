@@ -257,10 +257,10 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=60,144
 fi
 
-# Lenovo Legion Go 2
-if [[ ":83N0:83N1:" =~ ":$SYS_ID:"  ]]; then
-  HDR_ENABLE_PQ=1
-fi
+# # Lenovo Legion Go 2
+# if [[ ":83N0:83N1:" =~ ":$SYS_ID:"  ]]; then
+#   HDR_ENABLE_PQ=1
+# fi
 
 # ASUS ROG Flow Z13 2025
 if [[ ":ROG Flow Z13 GZ302EA_GZ302EA_03156148D:" =~ ":$SYS_ID:" ]]; then
