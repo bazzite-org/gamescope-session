@@ -257,9 +257,14 @@ if [[ ":83E1:" =~ ":$SYS_ID:"  ]]; then
   export STEAM_DISPLAY_REFRESH_LIMITS=60,144
 fi
 
-# # Lenovo Legion Go 2
+# Lenovo Legion Go 2
 if [[ ":83N0:83N1:" =~ ":$SYS_ID:"  ]]; then
+  ADAPTIVE_SYNC=1
+  ENABLE_VRR_MODESET=1
   HDR_ENABLE_PQ=1
+
+  # Set refresh rate range and enable refresh rate switching
+  export STEAM_DISPLAY_REFRESH_LIMITS=30,144
 fi
 
 # ASUS ROG Flow Z13 2025
