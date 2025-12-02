@@ -260,6 +260,8 @@ fi
 # # Lenovo Legion Go 2
 if [[ ":83N0:83N1:" =~ ":$SYS_ID:"  ]]; then
   HDR_ENABLE_PQ=1
+  ADAPTIVE_SYNC=1
+  ENABLE_VRR_MODESET=1
 fi
 
 # ASUS ROG Flow Z13 2025
